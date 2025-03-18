@@ -1,0 +1,30 @@
+package com.example.demo.model;
+
+public class Aluno {
+    private String nome;
+    private Integer idade;
+    
+    public Aluno() {        
+    }
+
+    public Aluno(String nome,Integer idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String setNome(String nome) {
+        this.nome = nome; 
+    }
+
+    public Integer getIdade() {
+        return idade;
+    } 
+
+    public void setIdade(Integer idade) {
+        this.idade = idade;
+    }
+}
