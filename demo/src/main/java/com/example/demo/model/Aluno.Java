@@ -19,12 +19,9 @@ public class Aluno {
     @NotBlank(message = "Cpf não pode ser branco")
     private String cpf;
 
-<<<<<<< HEAD
     public Aluno() {        
     }
 
-=======
->>>>>>> e0d55935a91e0f594389a65713e1223a38ab546b
     public Aluno(String nome,Integer idade, String cpf) {
         this.nome = nome;
         this.idade = idade;
