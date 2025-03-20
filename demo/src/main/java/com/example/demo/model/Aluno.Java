@@ -1,12 +1,17 @@
 package com.example.demo.model;
 
+import org.hibernate.validator.constraints.br.CPF;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class Aluno {
     
     @NotNull(message = "Nome não pode ser nulo")
     @NotBlank(message = "Nome não pode ser branco")
     private String nome;
     
-    @NotBlank(message = "Idade não pode ser nula")
+    @NotNull(message = "Idade não pode ser nula")
     private Integer idade;
 
     @CPF(message = "Cpf inválido")
@@ -17,7 +22,7 @@ public class Aluno {
     public Aluno() {        
     }
 
-    public Aluno(String nome,Integer idade) {
+    public Aluno(String nome,Integer idade, String cpf) {
         this.nome = nome;
         this.idade = idade;
     }
@@ -26,7 +31,7 @@ public class Aluno {
         return nome;
     }
 
-    public String setNome(String nome) {
+    public void setNome(String nome) {
         this.nome = nome; 
     }
 
