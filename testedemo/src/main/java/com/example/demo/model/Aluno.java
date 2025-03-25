@@ -34,7 +34,6 @@ public class Aluno {
 
     public void setNome(String nome) {
         this.nome = nome; 
-        return null;
     }
 
     public Integer getIdade() {
