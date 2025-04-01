@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Aluno;
-import com.example.demo.model.Professor;
 import com.example.demo.model.Pessoa;
+import com.example.demo.model.Professor;
 
 import jakarta.validation.Valid;
 
@@ -61,12 +61,17 @@ public class EscolaRestServices {
         return cpf.matches(regex);
     }
 
-    // Endpoint para alterar o nome de uma pessoa (Aluno ou Professor)
+    // Endpoint para alterar o nome de uma pessoa (Aluno ou Professor) se ela tiver mais de 18 anos
     @PostMapping("/pessoas/alterar-nome")
     public Pessoa alterarNome(@RequestBody @Valid Pessoa pessoa) {
         // Encontrar a pessoa na lista (baseado no CPF)
         for (Pessoa p : pessoas) {
             if (p.getCpf().equals(pessoa.getCpf())) {
+                // Verificar se a pessoa tem mais de 18 anos
+                if (p.getIdade() <= 18) {
+                    throw new IllegalArgumentException("A pessoa deve ter mais de 18 anos para alterar o nome.");
+                }
+
                 if (p instanceof Aluno) {
                     // Lógica específica para alunos
                     System.out.println("Alterando nome de aluno: " + p.getNome());
@@ -83,5 +88,9 @@ public class EscolaRestServices {
             }
         }
         throw new IllegalArgumentException("Pessoa não encontrada.");
+    }
+
+    public void setPessoas(List<Pessoa> pessoas) {
+        this.pessoas = pessoas;
     }
 }
